@@ -16,6 +16,7 @@ Built using [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptl
 - Syntax highlighting for code blocks
 - Markdown-based responses
 - Copy code blocks
+- Light and Dark Modes
 
 ## Deploy
 
