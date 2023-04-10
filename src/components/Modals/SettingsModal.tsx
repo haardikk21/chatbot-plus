@@ -7,6 +7,7 @@ import useChatbotStore from "@/stores/ChatbotStore";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Slider } from "../Slider";
+import { AIModels } from "@/types/models";
 
 const SettingsModal: React.FC = () => {
   const chatbotStore = useChatbotStore();
@@ -87,6 +88,24 @@ const SettingsModal: React.FC = () => {
                     {chatbotStore.temperature}
                   </span>
                 </div>
+
+                {chatbotStore.currentModelId !== "window.ai" && (
+                  <div className="mt-2 flex items-center gap-1.5 text-sm">
+                    <p className="font-medium">Model: </p>
+                    <select
+                      className="w-full rounded-md px-2 py-1"
+                      value={chatbotStore.currentModelId}
+                      onChange={(e) => {
+                        const selectedModel = e.target.value as "gpt-3.5-turbo" | "gpt-4"
+                        chatbotStore.setCurrentModelId(selectedModel);
+                        chatbotStore.setCurrentModelName(AIModels[selectedModel].name);
+                      }}
+                    >
+                      <option value={"gpt-3.5-turbo"}>GPT 3.5 Turbo</option>
+                      <option value={"gpt-4"}>GPT 4</option>
+                    </select>
+                  </div>
+                )}
               </Dialog.Panel>
             </Transition.Child>
           </div>
